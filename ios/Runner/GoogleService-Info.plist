@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDV-VWXT4RFE4aHgCvESe9B5BODprkYfKg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>604044337347</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.samMoodApp</string>
+	<key>PROJECT_ID</key>
+	<string>sam-mood-app-2bdbd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sam-mood-app-2bdbd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:604044337347:ios:864c2b8a94731ec77d0276</string>
+</dict>
+</plist>

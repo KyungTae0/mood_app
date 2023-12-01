@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604044337347",
+    "project_id": "sam-mood-app-2bdbd",
+    "storage_bucket": "sam-mood-app-2bdbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604044337347:android:a5acc60f950623587d0276",
+        "android_client_info": {
+          "package_name": "com.example.sam_mood_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAidXCJ4wmnBb2vRsgoGZCLs2QquNVx5sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
