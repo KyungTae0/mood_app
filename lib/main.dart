@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sam_mood_app/providers/user_auth_provider.dart';
 import 'package:sam_mood_app/root.dart';
-import 'package:sam_mood_app/screens/sign_in_screen.dart';
+import 'package:sam_mood_app/screens/mood/navigation_screen.dart';
+import 'package:sam_mood_app/screens/mood/post/post_screen.dart';
+import 'package:sam_mood_app/screens/user/sign_in_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,8 +14,18 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => UserAuthProvider(),
+        )
+      ],
+      child: const App(),
+    ),
+  );
 
-  runApp(const App());
+  // runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -20,7 +34,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: "Pretendard"),
+      theme: ThemeData(fontFamily: "Syongsyong"),
+      // home: const SignIn(),
+      // home: MultiProvider(
+      //   providers: [
+      //     ChangeNotifierProvider<UserAuthProvider>(create: (_) => UserAuthProvider())
+      //   ],
+      //   child: const SignIn(),
+      // )
+
       home: const Root(),
     );
 
