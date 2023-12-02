@@ -10,7 +10,7 @@ class NextButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: const Color.fromARGB(210, 210, 210, 210),
+        color: Colors.black,
         borderRadius: BorderRadius.circular(12),
       ),
       child: IconButton(

@@ -127,7 +127,9 @@ class _SelectEmotionScreenState extends State<SelectEmotionScreen> {
 
               return;
             }
+            // 선택한 이모지 넣어 다음페이지에 전달
             widget.setEmoji(emojiData);
+            // 부모 Post Screen의 페이지 인덱스를 변경하여 다음페이지로 이동
             widget.setPageIndex(1);
           }),
         ),
