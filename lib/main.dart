@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sam_mood_app/providers/user_auth_provider.dart';
 import 'package:sam_mood_app/root.dart';
-import 'package:sam_mood_app/screens/mood/navigation_screen.dart';
+import 'package:sam_mood_app/screens/mood/navigation/navigation_screen.dart';
 import 'package:sam_mood_app/screens/mood/post/post_screen.dart';
 import 'package:sam_mood_app/screens/user/sign_in_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,8 +15,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
+    // 여러개의 Provider 를 사용 할 때 (임시)
     MultiProvider(
       providers: [
+        // 아래 Provider의 변화에 대한 구독
         ChangeNotifierProvider(
           create: (context) => UserAuthProvider(),
         )

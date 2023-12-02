@@ -24,6 +24,7 @@ class _ImageContainerState extends State<ImageContainer> {
   //ImagePicker 초기화
   final ImagePicker picker = ImagePicker();
 
+  /// 디바이스 권한 확인
   Future<bool> isPermission() async {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.camera,
@@ -40,6 +41,7 @@ class _ImageContainerState extends State<ImageContainer> {
     return true;
   }
 
+  /// 이미지 가져오기
   Future getImage(ImageSource imageSource) async {
     final grant = await isPermission();
     if (!grant) {

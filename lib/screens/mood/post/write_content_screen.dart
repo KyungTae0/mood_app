@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sam_mood_app/models/mood_model.dart';
 import 'package:sam_mood_app/providers/user_auth_provider.dart';
-import 'package:sam_mood_app/screens/mood/navigation_screen.dart';
+import 'package:sam_mood_app/screens/mood/navigation/navigation_screen.dart';
 import 'package:sam_mood_app/widgets/image_container_widget.dart';
 
 class WriteContentScreen extends StatefulWidget {
@@ -23,14 +23,23 @@ class WriteContentScreen extends StatefulWidget {
 }
 
 class _WriteContentScreenState extends State<WriteContentScreen> {
+  // ========================================================
+  // form Data
+  // ========================================================
+  // 글 내용
   final TextEditingController content = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  late UserAuthProvider userAuthProvider;
+  // 폼 키
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   // 이미지 파일 저장 변수
   File? _file;
+
+  // ========================================================
+  // FireBase
+  // ========================================================
+  // 파이어스토어 객체 생성
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // 유저 Provider
+  late UserAuthProvider userAuthProvider;
 
   // 버튼 활성화 여부
   bool _isButtonEnabled = false;
@@ -127,7 +136,7 @@ class _WriteContentScreenState extends State<WriteContentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    userAuthProvider = Provider.of<UserAuthProvider>(context);
+    userAuthProvider = Provider.of<UserAuthProvider>(context, listen: false);
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -192,6 +201,8 @@ class _WriteContentScreenState extends State<WriteContentScreen> {
                 const SizedBox(
                   height: 10,
                 ),
+
+                // 이미지 불러오기 및 선택 노출 영역
                 ImageContainer(setImage: setImage),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 가로 점선 디바이더
 class DashedDivider extends StatelessWidget {
   final double? space;
   final double? length;

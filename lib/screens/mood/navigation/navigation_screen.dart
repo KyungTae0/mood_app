@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sam_mood_app/screens/mood/home_screen.dart';
+import 'package:sam_mood_app/screens/mood/home/home_screen.dart';
 import 'package:sam_mood_app/screens/mood/post/post_screen.dart';
 import 'package:sam_mood_app/widgets/navigation_widget.dart';
 

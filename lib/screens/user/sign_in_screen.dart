@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:sam_mood_app/screens/mood/navigation_screen.dart';
+import 'package:sam_mood_app/screens/mood/navigation/navigation_screen.dart';
 import 'package:sam_mood_app/screens/user/sign_up_screen.dart';
 import 'package:sam_mood_app/widgets/text_field_widget.dart';
 
@@ -70,7 +70,7 @@ class _SignInState extends State<SignIn> {
           }
           print(e);
         } catch (e) {
-          print("내가 모르는 에러가 있다고!?@!% $e");
+          print("unknown catch error - $e");
         } finally {
           setState(() {
             _isLoading = false;

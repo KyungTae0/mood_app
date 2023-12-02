@@ -25,14 +25,15 @@ class _PostScreenState extends State<PostScreen> {
 
   // post 페이지 인덱스
   int pageIndex = 0;
-  // 글쓰기 저장 데이터
+  // 글쓰기 저장 데이터 초기화
   MoodModel moodData = MoodModel(
-      emoji: "",
-      createdAt: DateTime.now(),
-      content: "",
-      uid: "",
-      image: "",
-      imageRef: "");
+    emoji: "",
+    createdAt: DateTime.now(),
+    content: "",
+    uid: "",
+    image: "",
+    imageRef: "",
+  );
 
   /// 파이어베이스 연결 세팅
   final FirebaseFirestore firestore = FirebaseFirestore.instance;

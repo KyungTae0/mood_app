@@ -94,6 +94,45 @@ class _MoodContainerState extends State<MoodContainer> {
       }
     }
 
+    // 파이어베이스 로그아웃
+    void logOut() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('로그아웃'),
+            content: const Text('정말로 로그아웃 하시겠습니까?'),
+            actions: [
+              TextButton(
+                // 확인 버트 누를 시
+                onPressed: () {
+                  // 프로바이더에 연결되어있는 FirebaseAuth.instance를 통해 로그아웃
+                  userAuthProvider.signOut();
+
+                  // 로그인 페이지로 이동
+                  // root.dart 페이지에서도 유저정보의 변경을 계속 감지하여 로그아웃시 로그인 페이지로 보낸다
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (_) => const SignIn(),
+                    ),
+                    (route) => false,
+                  );
+                  // Navigator.of(context).pop();
+                },
+                child: const Text('확인'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('취소'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -175,37 +214,7 @@ class _MoodContainerState extends State<MoodContainer> {
               ), // 화면의 첫 부분
               title: const Text("로그아웃"),
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('로그아웃'),
-                      content: const Text('정말로 로그아웃 하시겠습니까?'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            userAuthProvider.signOut();
-
-                            Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                builder: (_) => const SignIn(),
-                              ),
-                              (route) => false,
-                            );
-                            // Navigator.of(context).pop();
-                          },
-                          child: const Text('확인'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text('취소'),
-                        ),
-                      ],
-                    );
-                  },
-                );
+                logOut();
               },
               trailing: const Icon(Icons.logout_outlined), // 화면의 끝 부분
             ),

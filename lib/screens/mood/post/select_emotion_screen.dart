@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:sam_mood_app/widgets/emoji_card_row_widget.dart';
+import 'package:sam_mood_app/widgets/emoji_card_widget.dart';
 import 'package:sam_mood_app/widgets/next_button_widget.dart';
 
 class SelectEmotionScreen extends StatefulWidget {
@@ -22,6 +23,15 @@ class SelectEmotionScreen extends StatefulWidget {
 class _SelectEmotionScreenState extends State<SelectEmotionScreen> {
   String emojiData = "";
 
+  /// 이모지 넣어주기
+  void setEmoji(String emoji) {
+    setState(
+      () {
+        emojiData = emoji;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,6 +50,9 @@ class _SelectEmotionScreenState extends State<SelectEmotionScreen> {
             ),
           ),
         ),
+
+        /// Stream에의해 새로 build 해야할일이 생기면 알아서 listen해서 효율적으로 re build해주는 위젯이다
+        /// QuerySnapshot -> stream 에 의해 받는 데이터 형태
         StreamBuilder<QuerySnapshot>(
           stream: widget.firestore.collection('emotions').snapshots(),
           builder: (context, snapshot) {
@@ -50,45 +63,11 @@ class _SelectEmotionScreenState extends State<SelectEmotionScreen> {
               for (var emotion in emotions) {
                 String emoji = emotion.get('emoji');
                 emojiCards.add(
-                  Stack(
-                    children: [
-                      InkWell(
-                        child: Text(
-                          emotion.get('emoji'),
-                          style: const TextStyle(
-                            fontSize: 50,
-                          ),
-                        ),
-                        onTap: () => {
-                          setState(
-                            () {
-                              emojiData = emoji;
-                            },
-                          )
-                        },
-                      ),
-                      if (emojiData == emoji)
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            width: 17,
-                            height: 17,
-                            decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(25),
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 1,
-                                )),
-                            child: const Icon(
-                              Icons.check,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                          ),
-                        ),
-                    ],
+                  // 이모지 카드 한건 한건 추가
+                  EmojiCardWidget(
+                    emoji: emoji,
+                    emojiData: emojiData,
+                    setEmoji: setEmoji,
                   ),
                 );
               }
@@ -102,7 +81,9 @@ class _SelectEmotionScreenState extends State<SelectEmotionScreen> {
                       endIndex = emojiCards.length;
                     }
 
+                    // 이모지 카드 뿌리기
                     return EmojiCardRow(
+                        // 한줄에 3개씩 뿌림
                         emojiCards.sublist(startIndex, endIndex));
                   },
                 ),

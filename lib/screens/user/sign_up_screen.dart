@@ -66,6 +66,7 @@ class _SignUpState extends State<SignUp> {
 
           // 회원가입할때는 이름 못넣어서 가입 후 이름 업데이트
           await user.updateDisplayName(displayName.value.text.trim());
+          // 회원가입 안내 메세지
           showSignUpDialog();
 
           print(result);
@@ -78,7 +79,7 @@ class _SignUpState extends State<SignUp> {
             showFailedDialog('이미 존재하는 이메일입니다');
           }
         } catch (e) {
-          print("내가 모르는 에러가 있다고!?@! $e");
+          print("unknown catch error - $e");
         } finally {
           setState(() {
             _isLoading = false;
