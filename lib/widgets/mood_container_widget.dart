@@ -135,17 +135,30 @@ class _MoodContainerState extends State<MoodContainer> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        surfaceTintColor: Colors.white,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        title: Text(widget.appBarTitle),
-        toolbarHeight: 30,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.menu),
-        //   onPressed: () => print("asdf"),
-        // ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: AppBar(
+          surfaceTintColor: Colors.white,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 0),
+            child: Text(widget.appBarTitle),
+          ),
+          toolbarHeight: 50,
+          shape: const Border(
+            bottom: BorderSide(
+              color: Colors.grey,
+              width: 0.3,
+            ),
+          ),
+
+          // leading: IconButton(
+          //   icon: const Icon(Icons.menu),
+          //   onPressed: () => print("asdf"),
+          // ),
+        ),
       ),
       // ================================
       // 사이드 메뉴바

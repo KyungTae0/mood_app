@@ -38,14 +38,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
       // 원래 BottomNavigationBar로 했다가 3개 넘으면 아이콘 누를때 자꾸 움직이길래 얘로 바꿈
       bottomNavigationBar: NavigationWidget(
           onSelectedIndex: onSelectedIndex, selectedIndex: selectedIndex),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 30,
-        ),
-        child: [
-          const HomeScreen(), // 홈
-          const PostScreen(), // 검색
-        ][selectedIndex],
+      body: IndexedStack(
+        index: selectedIndex,
+        children: const [
+          HomeScreen(), // 홈
+          PostScreen(), // 글쓰기
+        ],
       ),
     );
   }

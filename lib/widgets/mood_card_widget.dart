@@ -57,15 +57,17 @@ class MoodCardWidget extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(formattedDay(mood.createdAt)),
-                  trailing: IconButton(
-                    onPressed: () {
-                      deleteDoc(docId, mood.imageRef);
-                    },
-                    icon: const Icon(
-                      Icons.delete_outlined,
-                      size: 20,
-                    ),
-                  ),
+                  trailing: mood.imageRef != null
+                      ? IconButton(
+                          onPressed: () {
+                            deleteDoc(docId, mood.imageRef!);
+                          },
+                          icon: const Icon(
+                            Icons.delete_outlined,
+                            size: 20,
+                          ),
+                        )
+                      : null,
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -78,7 +80,7 @@ class MoodCardWidget extends StatelessWidget {
                         Column(
                           children: [
                             Image.network(
-                              mood.image,
+                              mood.image!,
                               width: MediaQuery.of(context).size.width * 0.8,
                               height: 200,
                             ),

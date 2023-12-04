@@ -3,8 +3,8 @@ class MoodModel {
   DateTime createdAt;
   String emoji;
   String content;
-  String image;
-  String imageRef;
+  String? image;
+  String? imageRef;
 
   MoodModel({
     required this.uid,

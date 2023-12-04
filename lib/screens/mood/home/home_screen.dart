@@ -88,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 isEqualTo: FirebaseAuth.instance.currentUser?.uid,
                 // isEqualTo: context.select((UserAuthProvider a) => a.getUser()?.uid),
               )
+              .orderBy("createdAt", descending: true)
               .snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -104,7 +105,18 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
             // 조회해온 docs의 List
-            final docs = snapshot.data!.docs;
+            final docs = snapshot.data?.docs;
+            if (docs == null) {
+              return const Center(
+                //로딩바 구현 부분
+                child: SpinKitFadingCube(
+                  // FadingCube 모양 사용
+                  color: Colors.purple, // 색상 설정
+                  size: 50.0, // 크기 설정
+                  duration: Duration(seconds: 2), //속도 설정
+                ),
+              );
+            }
             // 데이터가 많고 얼만큼의 데이터가 있을지 모르기에 ListView.separated 사용
             return ListView.separated(
               // overflow 방지
